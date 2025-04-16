@@ -75,8 +75,6 @@ $DellGuids = @(
 
 # EXE-based uninstallers
 $ExeUninstallers = @(
-    @{ Path='C:\Program Files (x86)\InstallShield Installation Information\{286A9ADE-A581-43E8-AA85-6F5D58C7DC88}\DellOptimizer.exe'; Args='-remove -runfromtemp -silent'; Name='Dell Optimizer Service' },
-
     # Update Plugins
     @{ Path='C:\ProgramData\Package Cache\{819b927b-a8d8-46a9-9512-0326900f80e3}\DellUpdateSupportAssistPlugin.exe'; Args='/uninstall /quiet'; Name='SupportAssist Update Plugin 1' },
     @{ Path='C:\ProgramData\Package Cache\{31581d2d-a9e8-4f15-aa85-d6f9473b619e}\DellUpdateSupportAssistPlugin.exe'; Args='/uninstall /quiet'; Name='SupportAssist Update Plugin 2' },
@@ -101,7 +99,7 @@ $ExeUninstallers = @(
     # Agent & Others
     @{ Path='C:\Program Files\Dell\SupportAssistAgent\bin\SupportAssistUninstaller.exe'; Args='/S'; Name='SupportAssist Agent' },
     @{ Path='C:\Program Files\Dell\Dell Peripheral Manager\Uninstall.exe'; Args='/S'; Name='Peripheral Manager' },
-    @{ Path='C:\Program Files\Dell\Dell Display Manager 2.0\uninst.exe'; Args='/S'; Name='Display Manager 2.0' }
+    @{ Path='C:\Program Files\Dell\Dell Display Manager 2\uninst.exe'; Args='/S'; Name='Display Manager 2.X' }
 )
 #endregion
 
