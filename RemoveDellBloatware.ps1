@@ -9,6 +9,8 @@
     4) Deletes Dell scheduled tasks and services.
 
     Logs every action (and errors) to C:\Temp\DellBloatwareRemoval.log.
+
+    a lot of GUIDS and Exe from https://gist.github.com/tsfahmed2/5385b56e9a2d387ca61b355b90541084
 #>
 
 # Prevent terminating errors from stopping the script
@@ -20,56 +22,56 @@ $LogFile = 'C:\Temp\DellBloatwareRemoval.log'
 
 # MSI-based Dell applications (GUIDs, without braces)
 $DellGuids = @(
-    '5669AB71-1302-4412-8DA1-CB69CD7B7324', # Dell Command | Update for Windows 10
-    '4CCADC13-F3AE-454F-B724-33F6D4E52022',
-    'EC542D5D-B608-4145-A8F7-749C02BE6D94',
-    '41D2D254-D869-4CD8-B440-5DF49083C4BA',
-    'D8AE5F9D-647C-49B4-A666-1C20B44EC0E1', # Dell Update
-    '70E9F8CC-A23E-4C25-B292-C86C1821587C',
-    'CC5730C7-C867-43BD-94DA-00BB3836906F', # Digital Delivery
-    '66E2407E-9001-483E-B2AA-7AEF97567143',
-    '81C48559-E2EB-4F18-9854-51331B9DB552',
-    '3722784A-D530-4C82-BB78-4DF3E1A4CAD9',
-    '693A23FB-F28B-4F7A-A720-4C1263F97F43',
-    '560DFD4A-23E2-45DD-A223-A4B3FA356913',
-    '6B8F1793-AB75-4A01-B72D-CC2B54B19759',
-    'AADBB088-81DE-4EC8-B176-D98669BE09D4', # SupportAssist Update
-    'EDE60887-F1EA-4304-A3E9-806D29EEE3FB',
-    'C559D0AB-2D9E-4B59-B2B8-0C2061B3F9BC',
-    '8B6D8EEE-9EE4-4FA3-9EC6-87BE5D130CB6',
-    '8FA6BC9C-CF6A-45E7-92BD-1585DFAFB32C', # Remediation
-    '2B2C47D2-F037-4C03-B599-07D7AFE8DD54',
-    '1906C253-4035-4CA5-A501-075E691CCEC9',
-    'C4EF62FF-E6B9-4CE8-A514-1DDA49CB0C47',
-    '795931D8-2EBF-4969-A678-4219B161F676',
-    '10B1BCF9-4996-4270-A12D-1B1BFEEF979C',
-    '61A1B864-0DAF-45A4-8184-5A0D347803B1',
-    '6B991B44-B938-4902-BDF3-186CBDC62AD3',
-    'E21419F5-2AA6-439C-B2C1-840083A05BC5',
-    '28C1FA1E-C3B3-4257-A3F2-059EEA260C64',
-    '398E49A0-84CA-43B5-A926-42EF68619E91',
-    '3A0ECCB6-1034-440E-8672-C4E14CCB7689', # SupportAssist
-    '5106801D-CA18-4173-85B9-D74C33358F7F',
-    '9EF0AEB0-9AD2-40E6-8667-D7520C508941',
-    '71A59A4C-9348-4CA2-B98C-E422E14C9D31',
-    'E0659C89-D276-4B77-A5EC-A8F2F042E78F',
-    '900D0BCD-0B86-4DAA-B639-89BE70449569', # OS Recovery
-    '6DD27BB4-C350-414B-BC25-D33246605FB2',
-    'A713BCAE-ED3C-43BA-834A-8D1E8773FF2C',
-    '39BF0E71-7A16-4A80-BBCE-FBDD2D1CC2D5',
-    '18469ED8-8C36-4CF7-BD43-0FC9B1931AF8', # Power Manager
-    'BDB50421-E961-42F3-B803-6DAC6F173834', # Foundation Services
-    '6250A087-31F9-47E2-A0EF-56ABF31B610E', # Core Services
-    '2F3E37A4-8F48-465A-813B-1F2964DBEB6A', # Watchdog Timer
-    'E2CAA395-66B3-4772-85E3-6134DBAB244E', # Protected Workspace
-    'E9CD23E0-FC9B-4AE6-83A1-067FC62A39E7', # Digital Delivery
-    'D2E875B4-E71A-4AD2-9E0C-3E097A3D54FC', # Update 4.8
-    '9D377E41-9055-48E9-8109-59D777A78AAA', # Core Services dup
-    '286A9ADE-A581-43E8-AA85-6F5D58C7DC88', # Optimizer Core
-    'CF89B953-B6CE-48B6-9AF6-03EB3BFF3E2C', # Remediation dup
-    '21155715-548F-48D0-B5D1-3D030E8C22B3', # Trusted Device Agent
-    '691ECB5D-557A-41D2-B485-92352068D819'  # OS Recovery dup
-)
+     '5669AB71-1302-4412-8DA1-CB69CD7B7324', # Dell Command | Update for Windows 10
+     '4CCADC13-F3AE-454F-B724-33F6D4E52022', # Dell Command | Update for Windows 10
+     'EC542D5D-B608-4145-A8F7-749C02BE6D94', # Dell Command | Update for Windows 10
+     '41D2D254-D869-4CD8-B440-5DF49083C4BA', # Dell Command | Update for Windows 10
+     'D8AE5F9D-647C-49B4-A666-1C20B44EC0E1', # Dell Update
+     '70E9F8CC-A23E-4C25-B292-C86C1821587C', # Dell Update for Windows 10
+     'CC5730C7-C867-43BD-94DA-00BB3836906F', # Dell Digital Delivery Services
+     '66E2407E-9001-483E-B2AA-7AEF97567143', # Dell Digital Delivery Services
+     '81C48559-E2EB-4F18-9854-51331B9DB552', # Dell Digital Delivery Services
+     '3722784A-D530-4C82-BB78-4DF3E1A4CAD9', # Dell Digital Delivery Services
+     '693A23FB-F28B-4F7A-A720-4C1263F97F43', # Dell Digital Delivery Services
+     '560DFD4A-23E2-45DD-A223-A4B3FA356913', # Dell Digital Delivery Services
+     '6B8F1793-AB75-4A01-B72D-CC2B54B19759', # Dell Digital Delivery Services
+     'AADBB088-81DE-4EC8-B176-D98669BE09D4', # SupportAssist Update Plugin
+     'EDE60887-F1EA-4304-A3E9-806D29EEE3FB', # SupportAssist Update Plugin
+     'C559D0AB-2D9E-4B59-B2B8-0C2061B3F9BC', # SupportAssist Update Plugin
+     '8B6D8EEE-9EE4-4FA3-9EC6-87BE5D130CB6', # SupportAssist Update Plugin
+     '8FA6BC9C-CF6A-45E7-92BD-1585DFAFB32C', # Dell SupportAssist Remediation
+     '2B2C47D2-F037-4C03-B599-07D7AFE8DD54', # Dell SupportAssist Remediation
+     '1906C253-4035-4CA5-A501-075E691CCEC9', # Dell SupportAssist Remediation
+     'C4EF62FF-E6B9-4CE8-A514-1DDA49CB0C47', # Dell SupportAssist Remediation
+     '795931D8-2EBF-4969-A678-4219B161F676', # Dell SupportAssist Remediation
+     '10B1BCF9-4996-4270-A12D-1B1BFEEF979C', # Dell SupportAssist Remediation
+     '61A1B864-0DAF-45A4-8184-5A0D347803B1', # Dell SupportAssist Remediation
+     '6B991B44-B938-4902-BDF3-186CBDC62AD3', # Dell SupportAssist Remediation
+     'E21419F5-2AA6-439C-B2C1-840083A05BC5', # Dell SupportAssist Remediation
+     '28C1FA1E-C3B3-4257-A3F2-059EEA260C64', # Dell SupportAssist Remediation
+     '398E49A0-84CA-43B5-A926-42EF68619E91', # Dell SupportAssist Remediation
+     '3A0ECCB6-1034-440E-8672-C4E14CCB7689', # Dell SupportAssist
+     '5106801D-CA18-4173-85B9-D74C33358F7F', # Dell SupportAssist
+     '9EF0AEB0-9AD2-40E6-8667-D7520C508941', # Dell SupportAssist
+     '71A59A4C-9348-4CA2-B98C-E422E14C9D31', # Dell SupportAssist
+     'E0659C89-D276-4B77-A5EC-A8F2F042E78F', # Dell SupportAssist
+     '900D0BCD-0B86-4DAA-B639-89BE70449569', # Dell SupportAssist OS Recovery Plugin for Dell Update
+     '6DD27BB4-C350-414B-BC25-D33246605FB2', # Dell SupportAssist OS Recovery Plugin for Dell Update
+     'A713BCAE-ED3C-43BA-834A-8D1E8773FF2C', # Dell SupportAssist OS Recovery Plugin for Dell Update
+     '39BF0E71-7A16-4A80-BBCE-FBDD2D1CC2D5', # Dell SupportAssist OS Recovery Plugin for Dell Update
+     '18469ED8-8C36-4CF7-BD43-0FC9B1931AF8', # Dell Power Manager Service
+     'BDB50421-E961-42F3-B803-6DAC6F173834', # Dell Foundation Services
+     '6250A087-31F9-47E2-A0EF-56ABF31B610E', # Dell Core Services
+     '2F3E37A4-8F48-465A-813B-1F2964DBEB6A', # Dell Watchdog Timer	
+     'E2CAA395-66B3-4772-85E3-6134DBAB244E', # Dell Protected Workspace
+     'E9CD23E0-FC9B-4AE6-83A1-067FC62A39E7', # Dell Digital Delivery Services
+     'D2E875B4-E71A-4AD2-9E0C-3E097A3D54FC', # Dell Command | Update for Windows Universal 4.8
+     '9D377E41-9055-48E9-8109-59D777A78AAA', # Dell Core Services
+     '286A9ADE-A581-43E8-AA85-6F5D58C7DC88', # Dell Optimizer Core
+     'cf89b953-b6ce-48b6-9af6-03eb3bff3e2c', # Dell SupportAssist Remediation
+     '21155715-548F-48D0-B5D1-3D030E8C22B3', # Dell Trusted Device Agent
+     '691ecb5d-557a-41d2-b485-92352068d819' # Dell SupportAssist OS Recovery Plugin for Dell Update
+ )
 
 # EXE-based uninstallers
 $ExeUninstallers = @(
