@@ -32,11 +32,13 @@ This tool is **aggressive**. It will remove a wide range of Dell software includ
 
 ## 📂 Installation
 
-1. Save the script as `Remove-DellBloatware.ps1`.
+1. Save the script as `RemoveDellBloatware.ps1`.
 
 2. Open **PowerShell as Administrator**.
 
 3. Optional: Bypass script execution policy for the session:
    ```powershell
    Set-ExecutionPolicy Bypass -Scope Process -Force
+
+   .\RemoveDellBloatware.ps1
   ```
