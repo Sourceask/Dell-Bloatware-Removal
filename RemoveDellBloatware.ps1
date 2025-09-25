@@ -118,7 +118,7 @@ Function Uninstall-MsiApp {
     Write-Log ("Checking for MSI {0}..." -f $code)
     $key1 = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$ProductCode"
     $key2 = "HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\$ProductCode"
-    if (Test-Path $key1 -or Test-Path $key2) {
+    if ((Test-Path $key1) -or (Test-Path $key2)) {
         Write-Log ("Found MSI {0}, uninstalling..." -f $code)
         try {
             $p = Start-Process msiexec.exe -ArgumentList "/x $code /qn /norestart" -Wait -NoNewWindow -PassThru
